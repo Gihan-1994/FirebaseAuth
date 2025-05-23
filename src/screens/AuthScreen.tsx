@@ -19,56 +19,56 @@ const AuthScreen = () => {
 
 
 
-    // const handleGoogleSignIn = async () => {
-    //     try {
-    //         setIsLoading(true);
-    //         setError('');
-    //         const result = await signInWithPopup(auth, googleProvider);
-    //         const user = result.user;
-    //         setSuccessMessage(`Google sign-in successful: ${user.email}`);
-    //         setIsAuthenticated(true);
-    //         return user;
-    //     } catch (error: any) {
-    //         console.error("Google Sign-In Error:", error);
-    //         // Only show error if it's not a user cancellation
-    //         if (error.code !== 'auth/popup-closed-by-user') {
-    //             setError('Google sign-in failed. Please try again.');
-    //         }
-    //         return null;
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
-    const handleGoogleSignIn =  () => {
-        signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential?.accessToken;
-                console.log(token);
-                // The signed-in user info.
-                const user = result.user;
-                console.log(user);
-                setGoogleEmail(user.email);
-                console.log(googleEmail);
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
-            }).catch((error) => {
-            // Handle Errors here.
-            const errorCode = error.code;
-            console.log(errorCode);
-            const errorMessage = error.message;
-            console.log(errorMessage);
-            // The email of the user's account used.
-            const email = error.customData.email;
-            console.log(email);
-            // The AuthCredential type that was used.
-            const credential = GoogleAuthProvider.credentialFromError(error);
-            console.log(credential);
-
-        });
+    const handleGoogleSignIn = async () => {
+        try {
+            setIsLoading(true);
+            setError('');
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+           // setSuccessMessage(`Google sign-in successful: ${user.email}`);
+            setIsAuthenticated(true);
+            return user;
+        } catch (error: any) {
+            console.error("Google Sign-In Error:", error);
+            // Only show error if it's not a user cancellation
+            if (error.code !== 'auth/popup-closed-by-user') {
+                setError('Google sign-in failed. Please try again.');
+            }
+            return null;
+        } finally {
+            setIsLoading(false);
+        }
     };
+
+    // const handleGoogleSignIn =  () => {
+    //     signInWithPopup(auth, googleProvider)
+    //         .then((result) => {
+    //             // This gives you a Google Access Token. You can use it to access the Google API.
+    //             const credential = GoogleAuthProvider.credentialFromResult(result);
+    //             const token = credential?.accessToken;
+    //             console.log(token);
+    //             // The signed-in user info.
+    //             const user = result.user;
+    //             console.log(user);
+    //             setGoogleEmail(user.email);
+    //             console.log(googleEmail);
+    //             // IdP data available using getAdditionalUserInfo(result)
+    //             // ...
+    //         }).catch((error) => {
+    //         // Handle Errors here.
+    //         const errorCode = error.code;
+    //         console.log(errorCode);
+    //         const errorMessage = error.message;
+    //         console.log(errorMessage);
+    //         // The email of the user's account used.
+    //         const email = error.customData.email;
+    //         console.log(email);
+    //         // The AuthCredential type that was used.
+    //         const credential = GoogleAuthProvider.credentialFromError(error);
+    //         console.log(credential);
+    //
+    //     });
+    // };
 
 
     const handleFacebookSignIn =async () => {
