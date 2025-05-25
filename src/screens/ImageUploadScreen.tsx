@@ -1,12 +1,22 @@
 import {useState} from 'react';
 import AuthButton from "../components/authButton.tsx";
+import {uploadImage} from "../services/uploadService.ts";
 
 const ImageUploadScreen = () => {
 
     const [image, setImage] = useState <File|null>(null);
 
-    const handleUpload = () => {
+    const handleUpload =async () => {
       console.log(image);
+      try {
+        if(image){
+          const url = await uploadImage(image);
+          console.log(url);
+        }
+      } catch (error) {
+          console.error("Upload failed:", error);
+      }
+
     }
     return (
         <div className='Relative'>
